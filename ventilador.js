@@ -73,7 +73,7 @@ class Ventilator {
         return `${this.watts}/${this.brand}/${this.minRPM}/${this.maxRPM}`;
     }
 }
-console.log('------------------------------ ventilado------------------------');
+console.log('----------------------------- ventilador -----------------------');
 
 const vent = new Ventilator(200, 'Arno', 100, 300);
 console.log(vent.watts === 200);
