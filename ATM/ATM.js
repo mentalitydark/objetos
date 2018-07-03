@@ -103,38 +103,63 @@ class ATM {
             const tirarcedulas = [];
             let retirarDinheiro = 0;
             const verificao = [];
-            if (valor >= 100 && (parseInt(valor/100) <= this._cedulas[4][0])) {
-                retirarDinheiro = parseInt(valor/100);
-                valor -= retirarDinheiro*100;
-                verificao.push([100, retirarDinheiro]);
+            if ((this._cedulas[4][0] * 100 !== 0)) {
+                retirarDinheiro = parseInt(valor / 100);
+                if (retirarDinheiro >= this._cedulas[4][0]) {
+                    valor -= this._cedulas[4][0] * 100;
+                    verificao.push([100, this._cedulas[4][0]]);
+                } else {
+                    valor -= retirarDinheiro * 100;
+                    verificao.push([100, retirarDinheiro]);
+                }
                 numeros.push(100);
                 tirarcedulas.push(4);
             }
-            if (valor >= 50 && (parseInt(valor/50) <= this._cedulas[3][0])) {
-                retirarDinheiro = parseInt(valor/50);
-                valor -= retirarDinheiro*50;
-                verificao.push([50, retirarDinheiro]);
+            if ((this._cedulas[3][0] * 50 !== 0)) {
+                retirarDinheiro = parseInt(valor / 50);
+                if (retirarDinheiro >= this._cedulas[3][0]) {
+                    valor -= this._cedulas[3][0] * 50;
+                    verificao.push([50, this._cedulas[3][0]]);
+                } else {
+                    valor -= retirarDinheiro * 50;
+                    verificao.push([50, retirarDinheiro]);
+                }
                 numeros.push(50);
                 tirarcedulas.push(3);
             }
-            if (valor >= 20 && (parseInt(valor/20) <= this._cedulas[2][0])) {
-                retirarDinheiro = parseInt(valor/20);
-                valor -= retirarDinheiro*20;
-                verificao.push([20, retirarDinheiro]);
+            if ((this._cedulas[2][0] * 20 !== 0)) {
+                retirarDinheiro = parseInt(valor / 20);
+                if (retirarDinheiro >= this._cedulas[2][0]) {
+                    valor -= this._cedulas[2][0] * 20;
+                    verificao.push([20, this._cedulas[2][0]]);
+                } else {
+                    valor -= retirarDinheiro * 20;
+                    verificao.push([20, retirarDinheiro]);
+                }
                 numeros.push(20);
                 tirarcedulas.push(2);
             }
-            if (valor >= 10 && (parseInt(valor/10) <= this._cedulas[1][0])) {
-                retirarDinheiro = parseInt(valor/10);
-                valor -= retirarDinheiro*10;
-                verificao.push([10, retirarDinheiro]);
+            if ((this._cedulas[1][0] * 10 !== 0)) {
+                retirarDinheiro = parseInt(valor / 10);
+                if (retirarDinheiro >= this._cedulas[1][0]) {
+                    valor -= this._cedulas[1][0] * 10;
+                    verificao.push([10, this._cedulas[1][0]]);
+                } else {
+                    valor -= retirarDinheiro * 10;
+                    verificao.push([10, retirarDinheiro]);
+                }
                 numeros.push(10);
                 tirarcedulas.push(1);
             }
-            if (valor >= 5 && (parseInt(valor/5) <= this._cedulas[0][0])) {
-                retirarDinheiro = parseInt(valor/5);
-                valor -= retirarDinheiro*5;
-                verificao.push([5, retirarDinheiro]);
+            if ((this._cedulas[0][0] * 5 !== 0)) {
+                retirarDinheiro = parseInt(valor / 5);
+                if (retirarDinheiro >= this._cedulas[0][0]) {
+                    valor -= this._cedulas[0][0] * 5;
+                    verificao.push([5, this._cedulas[0][0]]);
+                } else {
+                    valor -= retirarDinheiro * 5;
+                    verificao.push([5, retirarDinheiro]);
+                }
                 numeros.push(5);
                 tirarcedulas.push(0);
             }
@@ -219,3 +244,32 @@ console.log(atm.valor === 410); // 6 * 10 + 7 * 50
 // incluir casos de teste pessoais com retiradas
 // quem combinam 3, 4 e 5 cédulas (+0.5 pts)
 // ---------------------------------------------------
+const atm2 = new ATM(36362);
+console.log((atm2.valor) === 0);
+atm2.abastecer(10, 5);
+atm2.abastecer(3, 100);
+atm2.abastecer(1, 10);
+console.log(atm2.valor) // 360;
+atm2.abastecer(1, 20);
+console.log(atm2.valor) // 380;
+atm2.retirar(360);
+console.log((atm2.valor) === 20);
+// ----------------------------------------------------
+const atm3 = new ATM(66524);
+atm3.abastecer(5, 10);
+atm3.abastecer(10, 100);
+atm3.abastecer(6, 20);
+atm3.abastecer(2, 50);
+console.log((atm3.valor) === 1270);
+atm3.retirar(580);
+console.log((atm3.valor) === 690);
+// --------------------------------------------------
+const atm4 = new ATM(32345);
+atm4.abastecer(1, 10);
+atm4.abastecer(1, 100);
+atm4.abastecer(1, 20);
+atm4.abastecer(1, 50);
+atm4.abastecer(2, 5);
+console.log(atm4.valor); // 190
+atm4.retirar(190);
+console.log((atm4.valor) === 0);
