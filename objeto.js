@@ -45,7 +45,7 @@ class Impressora {
         if (this._energia) this._on = !this._on;
     }
     abastecer(quantidade) {
-        this._papel = quantidade;
+        this._papel += quantidade;
     }
     imprimir(quantidade) {
         if (this._on) {
