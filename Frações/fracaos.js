@@ -1,5 +1,5 @@
 class Fraction {
-    constructor(numerator = 0, denominator = 0) {
+    constructor(numerator = 0, denominator = 1) {
         this._numerator = numerator;
         this._denominator = denominator;
         this._canReduce = canReduce(numerator, denominator);
@@ -201,8 +201,13 @@ console.log(f16.equals(f14) === false);
 // ---------------------------------------------------------
 const f17 = new Fraction(4);
 // TODO: escreva casos de teste para o valor que se espera de f17
-console.log(f17.toString() === '4/0');
-
+console.log(f17.toString() === '4/1');
+console.log(f17.greaterThan(f14)); // true
+console.log(f17.lessThan(f14)); // false
+console.log(f17.equals(f14)); // false
 const f18 = new Fraction();
 // TODO: escreva casos de teste para o valor que se espera de f18
-console.log(f18.toString() === '0/0');
+console.log(f18.toString() === '0/1');
+console.log(f18.greaterThan(f14)); // false
+console.log(f18.lessThan(f14)); // true
+console.log(f18.equals(f14)); // false

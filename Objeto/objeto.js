@@ -49,17 +49,23 @@ class Impressora {
     }
     imprimir(quantidade) {
         if (this._on) {
-            if (quantidade <= this._papel) this._papel -= quantidade;
-            else console.log('Papel insuficiente');
-        }
+            if (quantidade <= this._papel) {
+                this._papel -= quantidade;
+                return 'Impressão completa.'
+            }
+            else return 'Papel insuficiente';
+        } else return 'Impressora desligada';
     }
     imprimirScan(quantidade) {
         if (this._on) {
             if (quantidade <= this._papel && this._EscaneamentoPronto) {
                 this._papel -= quantidade;
                 this._EscaneamentoPronto = false;
-            } else console.log('Papel insuficiente ou escaneaste nada');
-        }
+                return 'Impressão completa.'
+            } else {
+                return 'Papel insuficiente ou escaneaste nada';
+            }
+        } else return 'Impressora desligada';
     }
     papelScan() {
         this._PapelScan = !this._PapelScan;
@@ -68,9 +74,9 @@ class Impressora {
         if (this._on) {
             if (this._PapelScan) {
                 this._EscaneamentoPronto = true;
-                console.log('Escaneamente completo.');
+                return 'Escaneamente completo.';
             }
-        }
+        } else return 'Impressora desligada';
     }
     toString() {
         const part1 = `Marca: ${this.marca}\n Tamanho: ${this.tamanho}`;
@@ -84,7 +90,7 @@ hp.abastecer(20); // abastece 20 papéis
 hp.ligarDesligarEnergia(); // liga na tomada
 hp.ligarDesligar(); // liga no botão
 hp.papelScan(); // coloca papel para escanear
-hp.scan(); // scannei papel
+hp.scan(); // scanneia papel
 hp.imprimirScan(5); // imprime uma quantidade do scan
 hp.imprimir(20); // Papel insuficiente.
 console.log((hp.modelo) === 3636);
@@ -97,4 +103,4 @@ hp.EscaneamentoPronto = true;
 console.log((hp.EscaneamentoPronto) === false);
 hp.ligarDesligar();
 console.log(hp.on); // false (está desligada da tomada)
-hp.imprimir(50); // false (desligada)
+console.log(hp.imprimir(50)); // Impressora desligada
